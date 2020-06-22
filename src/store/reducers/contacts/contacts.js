@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_CONTACT_SUCCESS:
+        case actionTypes.FETCH_CONTACTS_SUCCESS:
             return updateObject(state, {loading: false, contacts: action.contacts})
         case actionTypes.FETCH_CONTACTS_FAIL:
             return updateObject(state, {loading: false})
