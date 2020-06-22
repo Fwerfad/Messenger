@@ -3,21 +3,21 @@ import axios from 'axios'
 
 export const fetchSuccess = (chats) => {
     return {
-        type: actionTypes.FETCH_SUCCESS,
+        type: actionTypes.FETCH_CHATS_SUCCESS,
         chats: chats
     }
 };
 
 export const fetchFailed = (error) => {
     return {
-        type: actionTypes.FETCH_FAIL,
+        type: actionTypes.FETCH_CHATS_FAIL,
         error: error
     }
 };
 
 export const fetchStart = () => {
     return {
-        type: actionTypes.FETCH_START
+        type: actionTypes.FETCH_CHATS_START
     }
 };
 
