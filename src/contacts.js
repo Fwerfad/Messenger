@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
         height: '95px',
         borderBottomColor: '#C4C4C4',
         borderBottomStyle: "solid",
-        borderBottomWidth: '1px'
+        borderBottomWidth: '1px',
+        '&:hover' : {
+            backgroundColor: '#C4C4C4'
+        }
     },
     listItemText: {
         margin: '0px 20px',
