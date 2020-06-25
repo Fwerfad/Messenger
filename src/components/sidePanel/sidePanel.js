@@ -14,7 +14,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PersonIcon from "@material-ui/icons/Person";
 import useStyles from "./classes";
 
-const SideDraw = (props) => {
+const SidePanel = (props) => {
     const classes = useStyles();
     const [isOpen, toggleDrawer] = useReducer((state) => !state, false);
 
@@ -56,4 +56,4 @@ const SideDraw = (props) => {
     );
 };
 
-export default SideDraw
+export default SidePanel
