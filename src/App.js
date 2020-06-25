@@ -1,6 +1,6 @@
 import React from "react";
-import Settings from "./Pages/settings.js";
+import Profile from "./Components/Profile";
 
 export default function App() {
-  return <Settings />;
+  return <Profile />;
 }
