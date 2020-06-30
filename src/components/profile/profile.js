@@ -9,7 +9,7 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
 } from "@material-ui/core";
-import useStyles from "../styles.js";
+import useStyles from "../../styles.js";
 
 export default function Profile() {
   const classes = useStyles();

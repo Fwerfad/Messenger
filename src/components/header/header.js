@@ -20,13 +20,13 @@ const Header = (props) => {
         <ExpansionPanel>
             <ExpansionPanelSummary>
                 <Typography>
-                    MESSAGES <ExpandMoreIcon/>
+                    MENU <ExpandMoreIcon/>
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <HeaderLink fun={handleClick} text={'Chat'} buttonClass={classes.button} img={<ChatIcon/>}/>
-                <HeaderLink fun={handleClick} text={'Profile'} buttonClass={classes.button} img={<AccountCircleIcon/>}/>
-                <HeaderLink fun={handleClick} text={'Contacts'} buttonClass={classes.button} img={<PeopleAltIcon/>}/>
+                <HeaderLink fun={handleClick} text={'Chat'} buttonClass={classes.button} img={<ChatIcon/>} link={'/Chat'}/>
+                <HeaderLink fun={handleClick} text={'Profile'} buttonClass={classes.button} img={<AccountCircleIcon/>}  link={'/Profiles'}/>
+                <HeaderLink fun={handleClick} text={'Contacts'} buttonClass={classes.button} img={<PeopleAltIcon/>} link={'/Contacts'}/>
             </ExpansionPanelDetails>
         </ExpansionPanel>
         </body>
