@@ -3,10 +3,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChatIcon from "@material-ui/icons/Chat";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, useStyles, HeaderLink} from './classes';
+import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, useStyles, HeaderLink} from './headerStyles';
 import Typography from '@material-ui/core/Typography';
 
-const Header = (props) => {
+export const Header = (props) => {
     function handleClick(e) {
         e.preventDefault();
         console.log("По ссылке кликнули.");

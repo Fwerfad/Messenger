@@ -7,11 +7,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Header from "./components/header/header"
-import ContactsList from "./components/сontactList/contacts";
-import Chat from "./components/chat/chat";
-import Profile from "./components/profile/profile";
-import SidePanel from "./components/sidePanel/sidePanel";
+import Header from "./components/header/headerContainer"
+import ContactsList from "./components/сontactList/contactsContainer";
+import Chat from "./components/chat/chatContainer";
+import Profile from "./components/profile/profileContainer";
+import SidePanel from "./components/sidePanel/sidePanelConainer";
 
 class App extends React.Component {
   // TODO move isSignedIn to redux

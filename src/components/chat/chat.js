@@ -15,7 +15,7 @@ function Message(props) {
   return <div className={classes.message}>{props.children}</div>
 }
 
-function Chat() {
+export function Chat() {
   const classes = chatStyles()
   return (
     <Container maxWidth="sm">

@@ -1,2 +1,3 @@
-import SidePanel from "./sidePanel";
-export const SidePanelContainer = SidePanel;
+import {SidePanel as SP} from "./sidePanel";
+export const SidePanel = SP;
+export default SidePanel

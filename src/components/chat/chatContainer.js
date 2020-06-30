@@ -1,3 +1,4 @@
-import Chat from "./chat";
+import {Chat as C} from "./chat";
 
-export const ChatContainer = Chat;
+const Chat = C;
+export default Chat

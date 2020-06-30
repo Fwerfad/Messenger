@@ -1,3 +1,4 @@
-import Header from "./header";
+import {Header as H} from "./header";
 
-export const HeaderContainer = Header;
+const Header = H;
+export default Header
