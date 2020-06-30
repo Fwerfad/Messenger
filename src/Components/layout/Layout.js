@@ -14,6 +14,10 @@ import useStyles from "./classes";
 const Layout = (props) => {
     const classes = useStyles();
 
+    const createNewChat = () => {
+        
+    }
+
     return (
             <div className={classes.root}>
                 <AppBar
@@ -32,9 +36,7 @@ const Layout = (props) => {
                         <Header/>
                         <div>
                             <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
+
                                 color="inherit"
                             >
                                 <ChatIcon color="action"/>
