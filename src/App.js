@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
 } from "react-router-dom";
 import ContactsList from "./components/сontactList/contactsContainer";
 import Chat from "./components/chat/chatContainer";
@@ -40,16 +39,16 @@ class App extends React.Component {
     }
 
     return (
-        <Router>
-          <Layout>
-            <Switch>
-              <Route path="/Chat" component={ChatFunction}/>
-              <Route path="/Profiles" component={ProfileFunction}/>
-              <Route path="/Contacts" component={ContactFunction}/>
-              <Route path="/" component={ChatFunction}/>
-            </Switch>
-          </Layout>
-        </Router>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route path="/Chat" component={ChatFunction}/>
+            <Route path="/Profiles" component={ProfileFunction}/>
+            <Route path="/Contacts" component={ContactFunction}/>
+            <Route path="/" component={ChatFunction}/>
+          </Switch>
+        </Layout>
+      </Router>
     )
   }
 }

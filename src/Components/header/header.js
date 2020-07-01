@@ -30,6 +30,3 @@ export const Header = (props) => {
         </ExpansionPanel>
     );
 };
-
-
-export default Header

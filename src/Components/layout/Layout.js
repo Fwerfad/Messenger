@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import {AppBar, Toolbar} from '@material-ui/core'
 
-import Header from "../header/header";
+import Header from "../header/headerContainer";
 import SidePanel from "../sidePanel/sidePanel";
 import Modal from "../modal/modalContainer";
 
@@ -68,5 +68,3 @@ export const Layout = (props) => {
             </div>
     );
 }
-
-// export default Layout
