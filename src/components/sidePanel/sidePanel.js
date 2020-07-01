@@ -35,6 +35,7 @@ const SidePanel = (props) => {
                 <Divider />
                 <div className={classes.hiddenScroll}>
                     <List className={classes.scrollContainer}>
+                        <div style={{minWidth: "57px"}}>
                         {["very", "long", "name", "which", "does", "not", "fit", "Jon", "Sally", "very", "long", "name", "which", "does", "not", "fit", "Jon", "Sally"].map(
                             (text, index) => (
                                 <ListItem button key={index}>
@@ -51,6 +52,7 @@ const SidePanel = (props) => {
                                 </ListItem>
                             )
                         )}
+                        </div>
                     </List>
                 </div>
             </Drawer>

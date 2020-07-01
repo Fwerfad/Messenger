@@ -2,18 +2,35 @@ import { makeStyles } from "@material-ui/core/styles"
 import chatBackgroundImage from "./../../images/white-scratone.png"
 
 export let chatStyles = makeStyles({
+  container: {
+    padding: 0,
+    height: "calc(100% - 80px)",
+    overflow: "hidden",
+    width: "100%",
+    margin: 0
+  },
   chat: {
-    backgroundColor: "#f2f8fd",
-    backgroundImage: `url(${chatBackgroundImage})`,
     display: "flex",
     flexDirection: "column",
     padding: "10px",
+    paddingRight: 20,
+    marginRight: -20,
+    overflowY: "scroll",
+    overflowX: "hidden",
+    width: "100%",
+    height: "100%",
   },
   chatContollers: {
     display: "flex",
     "align-items": "center",
     height: "80px",
     "background-color": "#e6e7e8",
+  },
+  chatControllersPosition: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: "100%"
   },
   imageInput: {
     float: "left",

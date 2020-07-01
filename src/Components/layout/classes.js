@@ -5,6 +5,7 @@ const drawerWidth = 240
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        padding: 0,
     },
     appBar: {
         display: 'flex',
@@ -35,9 +36,19 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: 0,
+        height: "100vh",
+        width: "100%",
+        position: "relative",
+        overflow: "hidden",
         marginLeft: 57 - drawerWidth
     },
+    contentContainer: {
+        position: "absolute",
+        height: "100%",
+        width: "100%",
+        margin: 0
+    }
 }));
 
 export default useStyles

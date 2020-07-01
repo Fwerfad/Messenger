@@ -1,5 +1,4 @@
 import React from "react"
-import "./App.css"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { firebase, uiConfig } from "./firebaseConfig"
 
