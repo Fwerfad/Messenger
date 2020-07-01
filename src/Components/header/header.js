@@ -16,7 +16,6 @@ export const Header = (props) => {
     console.log("classes");
     console.log(classes);
     return (
-        <body>
         <ExpansionPanel>
             <ExpansionPanelSummary>
                 <Typography>
@@ -29,7 +28,6 @@ export const Header = (props) => {
                 <HeaderLink fun={handleClick} text={'Contacts'} buttonClass={classes.button} img={<PeopleAltIcon/>} link={'/Contacts'}/>
             </ExpansionPanelDetails>
         </ExpansionPanel>
-        </body>
     );
 };
 

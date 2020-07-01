@@ -5,9 +5,20 @@ export const useStyles = makeStyles((theme) => ({
         fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
         fontSize: '14px'
     },
+    container: {
+        overflowY: "scroll",
+        overflowX: "hidden",
+        width: "100%",
+        paddingRight: 20,
+        marginRight: -20,
+        paddingLeft: 20,
+        marginLeft: -20,
+        height: "calc(100% - 80px)",
+    },
     listItem: {
         backgroundColor: 'white',
         height: '95px',
+        width: "100%",
         borderBottomColor: '#C4C4C4',
         borderBottomStyle: "solid",
         borderBottomWidth: '1px',

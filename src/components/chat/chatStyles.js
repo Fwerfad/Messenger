@@ -7,7 +7,7 @@ export let chatStyles = makeStyles({
     height: "calc(100% - 80px)",
     overflow: "hidden",
     width: "100%",
-    margin: 0
+    margin: 0,
   },
   chat: {
     display: "flex",
@@ -44,7 +44,7 @@ export let chatStyles = makeStyles({
     color: "inherit",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
   imageInputIcon: {
@@ -70,7 +70,7 @@ export let chatStyles = makeStyles({
     width: "100%",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
   sendMessageContainer: {
@@ -88,7 +88,7 @@ export let chatStyles = makeStyles({
     background: "none",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
 })
@@ -118,15 +118,16 @@ export let messageStyles = makeStyles({
       ? {
           alignItems: "flex-start",
           marginRight: "25%",
-          backgroundColor: "#d1d3d4",
+          backgroundColor: "#e6e7e8",
           position: "relative",
         }
       : {
           alignItems: "flex-end",
           color: "black",
           marginLeft: "25%",
-          background: "rgba(253, 186, 45, 1)",
+          background: "rgba(23, 113, 241, 0.5)",
           position: "relative",
+          // color: "white"
         }
     return {
       borderRadius: "20px",

@@ -1,4 +1,4 @@
-import {Chat as C} from "./chat";
+import {Chat as C} from "./Chat";
 
 const Chat = C;
 export default Chat

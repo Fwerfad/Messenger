@@ -3,22 +3,22 @@ import {AppBar, Toolbar} from '@material-ui/core'
 
 import Header from "../header/header";
 import SidePanel from "../sidePanel/sidePanel";
-import ModalUI from "../modal/modal";
+import Modal from "../modal/modalContainer";
 
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChatIcon from '@material-ui/icons/Chat';
 
-import useStyles from "./classes";
-import ContactsList from "../ContactList/contacts";
+import useStyles from "./layoutStyles";
+import ContactsList from "../сontactList/contacts";
 
 
-const Layout = (props) => {
+export const Layout = (props) => {
     const [isOpen, toggleModal] = useReducer((state) => !state, false);
     const classes = useStyles();
 
     const createNewChat = (userID) => {
-
+        //TODO
     }
 
     const editProfile = () => {
@@ -61,12 +61,12 @@ const Layout = (props) => {
                         <div className={classes.toolbar} />
                         {props.children}
                     </div>
-                    <ModalUI isOpen={isOpen} close={toggleModal}>
+                    <Modal isOpen={isOpen} close={toggleModal}>
                         <ContactsList users={[{name: "john"}, {name: "john"}, {name: "john"}, {name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},]}/>
-                    </ModalUI>
+                    </Modal>
                 </main>
             </div>
     );
 }
 
-export default Layout
+// export default Layout

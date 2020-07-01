@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {
     List,
     ListItem,
@@ -15,7 +15,7 @@ export function ContactsList(props) {
     const classes = useStyles()
     const users = state.users
     const listItems = users.map((user) =>
-        <React.Fragment>
+        <Fragment>
             <ListItem className={classes.listItem}
                       key={user.name}
                       alignItems="flex-start">
@@ -47,10 +47,10 @@ export function ContactsList(props) {
                     </React.Fragment>
                 </ListItemText>
             </ListItem>
-        </React.Fragment>
+        </Fragment>
     );
     return (
-        <List>
+        <List className={classes.container}>
             {listItems}
         </List>
     )
