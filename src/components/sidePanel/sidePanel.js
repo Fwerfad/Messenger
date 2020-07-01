@@ -12,9 +12,9 @@ import {
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PersonIcon from "@material-ui/icons/Person";
-import useStyles from "./classes";
+import useStyles from "./sidePanelStyles";
 
-const SidePanel = (props) => {
+export const SidePanel = (props) => {
     const classes = useStyles();
     const [isOpen, toggleDrawer] = useReducer((state) => !state, false);
 

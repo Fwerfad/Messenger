@@ -1,14 +1,12 @@
-import React, {useReducer} from "react";
+import React from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ChatIcon from "@material-ui/icons/Chat";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, useStyles, HeaderLink} from './classes';
+import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, useStyles, HeaderLink} from './headerStyles';
 import Typography from '@material-ui/core/Typography';
 
-const Header = (props) => {
-    const [isOpen, toggleMenu] = useReducer((state) => !state, false);
+export const Header = (props) => {
     function handleClick(e) {
         e.preventDefault();
         console.log("По ссылке кликнули.");
@@ -18,19 +16,20 @@ const Header = (props) => {
     console.log("classes");
     console.log(classes);
     return (
-        <ExpansionPanel style={{margin: 0}} onChange={toggleMenu}>
+        <body>
+        <ExpansionPanel>
             <ExpansionPanelSummary>
                 <Typography>
-                    MESSAGES
-                    {isOpen? <ExpandLessIcon/> : <ExpandMoreIcon/>}
+                    MENU <ExpandMoreIcon/>
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <HeaderLink fun={handleClick} text={'Chat'} buttonClass={classes.button} img={<ChatIcon color="action"/>}/>
-                <HeaderLink fun={handleClick} text={'Profile'} buttonClass={classes.button} img={<AccountCircleIcon  color="action"/>}/>
-                <HeaderLink fun={handleClick} text={'Contacts'} buttonClass={classes.button} img={<PeopleAltIcon color="action"/>}/>
+                <HeaderLink fun={handleClick} text={'Chat'} buttonClass={classes.button} img={<ChatIcon/>} link={'/Chat'}/>
+                <HeaderLink fun={handleClick} text={'Profile'} buttonClass={classes.button} img={<AccountCircleIcon/>}  link={'/Profiles'}/>
+                <HeaderLink fun={handleClick} text={'Contacts'} buttonClass={classes.button} img={<PeopleAltIcon/>} link={'/Contacts'}/>
             </ExpansionPanelDetails>
         </ExpansionPanel>
+        </body>
     );
 };
 

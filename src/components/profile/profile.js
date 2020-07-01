@@ -9,9 +9,9 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
 } from "@material-ui/core";
-import useStyles from "../styles.js";
+import useStyles from "../../styles.js";
 
-export default function Profile() {
+export function Profile() {
   const classes = useStyles();
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -175,3 +175,4 @@ export default function Profile() {
     </Grid>
   );
 }
+export default Profile
