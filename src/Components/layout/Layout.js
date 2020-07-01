@@ -1,10 +1,9 @@
 import React, {useReducer} from 'react';
 import {AppBar, Toolbar} from '@material-ui/core'
 
-import Header from "../../Component/header";
+import Header from "../header/header";
 import SidePanel from "../sidePanel/sidePanel";
 import ModalUI from "../modal/modal";
-import contacts from "../ContactList/contacts";
 
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
