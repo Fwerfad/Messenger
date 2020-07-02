@@ -7,17 +7,20 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, useStyles, HeaderLink} from './headerStyles';
 import Typography from '@material-ui/core/Typography';
 
+import { useLocation } from 'react-router-dom'
+
 export const Header = (props) => {
     const [isOpen, toggleMenu] = useReducer((state) => !state, false);
 
     const classes = useStyles();
     console.log("classes");
     console.log(classes);
+    let location = useLocation().pathname.replace(/[^a-z+]+/gi, '');
     return (
         <ExpansionPanel expanded={isOpen}>
             <ExpansionPanelSummary onClick={toggleMenu}>
                 <Typography>
-                    MENU
+                    {location}
                     {isOpen ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
                 </Typography>
             </ExpansionPanelSummary>

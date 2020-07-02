@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 import ContactsList from "./components/сontactList/contactsContainer";
 import Chat from "./components/chat/chatContainer";
@@ -45,7 +46,7 @@ class App extends React.Component {
             <Route path="/Chat" component={ChatFunction}/>
             <Route path="/Profiles" component={ProfileFunction}/>
             <Route path="/Contacts" component={ContactFunction}/>
-            <Route path="/" component={ChatFunction}/>
+            <Route path="/" render={() => (<Redirect to={'/Chat'}/>)}/>
           </Switch>
         </Layout>
       </Router>
