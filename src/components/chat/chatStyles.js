@@ -2,18 +2,35 @@ import { makeStyles } from "@material-ui/core/styles"
 import chatBackgroundImage from "./../../images/white-scratone.png"
 
 export let chatStyles = makeStyles({
+  container: {
+    padding: 0,
+    height: "calc(100% - 80px)",
+    overflow: "hidden",
+    width: "100%",
+    margin: 0,
+  },
   chat: {
-    backgroundColor: "#f2f8fd",
-    backgroundImage: `url(${chatBackgroundImage})`,
     display: "flex",
     flexDirection: "column",
     padding: "10px",
+    paddingRight: 20,
+    marginRight: -20,
+    overflowY: "scroll",
+    overflowX: "hidden",
+    width: "100%",
+    height: "100%",
   },
   chatContollers: {
     display: "flex",
     "align-items": "center",
     height: "80px",
     "background-color": "#e6e7e8",
+  },
+  chatControllersPosition: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: "100%"
   },
   imageInput: {
     float: "left",
@@ -27,7 +44,7 @@ export let chatStyles = makeStyles({
     color: "inherit",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
   imageInputIcon: {
@@ -53,7 +70,7 @@ export let chatStyles = makeStyles({
     width: "100%",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
   sendMessageContainer: {
@@ -71,7 +88,7 @@ export let chatStyles = makeStyles({
     background: "none",
     border: "none",
     padding: 0,
-    font: "inherit",
+    // font: "inherit",
     outline: "inherit",
   },
 })
@@ -101,15 +118,16 @@ export let messageStyles = makeStyles({
       ? {
           alignItems: "flex-start",
           marginRight: "25%",
-          backgroundColor: "#d1d3d4",
+          backgroundColor: "#e6e7e8",
           position: "relative",
         }
       : {
           alignItems: "flex-end",
           color: "black",
           marginLeft: "25%",
-          background: "rgba(253, 186, 45, 1)",
+          background: "rgba(23, 113, 241, 0.5)",
           position: "relative",
+          // color: "white"
         }
     return {
       borderRadius: "20px",

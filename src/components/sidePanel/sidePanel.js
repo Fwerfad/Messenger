@@ -33,24 +33,28 @@ export const SidePanel = (props) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
-                    {["very long name which does not fit", "Jon", "Sally"].map(
-                        (text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    <PersonIcon fontSize="medium" />
-                                </ListItemIcon>
-                                <Tooltip title={text}>
-                                    <ListItemText
-                                        className={classes.message}
-                                        primary={text}
-                                        secondary={"01.02.2020"}
-                                    />
-                                </Tooltip>
-                            </ListItem>
-                        )
-                    )}
-                </List>
+                <div className={classes.hiddenScroll}>
+                    <List className={classes.scrollContainer}>
+                        <div style={{minWidth: "57px"}}>
+                        {["very", "long", "name", "which", "does", "not", "fit", "Jon", "Sally", "very", "long", "name", "which", "does", "not", "fit", "Jon", "Sally"].map(
+                            (text, index) => (
+                                <ListItem button key={index}>
+                                    <ListItemIcon>
+                                        <PersonIcon fontSize="medium" />
+                                    </ListItemIcon>
+                                    <Tooltip title={text}>
+                                        <ListItemText
+                                            className={classes.message}
+                                            primary={text}
+                                            secondary={"01.02.2020"}
+                                        />
+                                    </Tooltip>
+                                </ListItem>
+                            )
+                        )}
+                        </div>
+                    </List>
+                </div>
             </Drawer>
         </Fragment>
     );

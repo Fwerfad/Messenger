@@ -3,13 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
-    background: "grey",
-    paddingBotton: 35,
-    paddingTop: 35,
+    background: "rgba(0,0,0,0.54)",
+    height: "100%",
+    width: "100%"
   },
   container: {
     marginBottom: "auto",
-    width: "auto",
+    width: "100%",
   },
   paper: {
     // padding: theme.spacing(1),
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 30,
   },
   void: {
-    height: 250,
+    height: "100vh",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

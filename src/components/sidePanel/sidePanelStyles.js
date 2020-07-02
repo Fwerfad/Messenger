@@ -30,10 +30,24 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
+        boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)"
     },
     message: {
         textOverflow: "ellipsis",
         overflow: "hidden"
+    },
+    scrollContainer: {
+        paddingRight: 20,
+        marginRight: -20,
+        overflowY: "scroll",
+        overflowX: "hidden",
+        width: "100%",
+        height: "100%",
+    },
+    hiddenScroll: {
+        overflow: "hidden",
+        height: "100%",
+        width: "100%",
     }
 }));
 

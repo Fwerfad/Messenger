@@ -5,13 +5,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Redirect
 } from "react-router-dom";
-import Header from "./components/header/headerContainer"
 import ContactsList from "./components/сontactList/contactsContainer";
 import Chat from "./components/chat/chatContainer";
 import Profile from "./components/profile/profileContainer";
-import SidePanel from "./components/sidePanel/sidePanelConainer";
+import Layout from "./components/layout/layoutContainer";
 
 class App extends React.Component {
   // TODO move isSignedIn to redux
@@ -41,39 +40,22 @@ class App extends React.Component {
     }
 
     return (
-          <div className="App">
-            <header className="App-header">
-              <div>
-                <h1>Messenger</h1>
-                <p>Привет {auth.currentUser.displayName}!</p>
-                <button onClick={() => auth.signOut()}>Sign-out</button>
-              </div>
-            </header>
-            <body>
-            <Router>
-              <Header/>
-              <div>
-                <Switch>
-                  <Route path="/Chat">
-                    <ChatFunction />
-                  </Route>
-                  <Route path="/Profiles">
-                    <ProfileFunction />
-                  </Route>
-                  <Route path="/Contacts">
-                    <ContactFunction />
-                  </Route>
-                </Switch>
-              </div>
-            </Router>
-            </body>
-          </div>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route path="/Chat" component={ChatFunction}/>
+            <Route path="/Profiles" component={ProfileFunction}/>
+            <Route path="/Contacts" component={ContactFunction}/>
+            <Route path="/" render={() => (<Redirect to={'/Chat'}/>)}/>
+          </Switch>
+        </Layout>
+      </Router>
     )
   }
 }
 
 function ChatFunction() {
-  return <div><Chat/><SidePanel/></div>;
+  return <Chat/>;
 }
 
 function ProfileFunction() {

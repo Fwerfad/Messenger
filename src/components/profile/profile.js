@@ -9,7 +9,7 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
 } from "@material-ui/core";
-import useStyles from "../../styles.js";
+import useStyles from "./profileStyles.js";
 
 export function Profile() {
   const classes = useStyles();
@@ -24,7 +24,7 @@ export function Profile() {
       <Grid item>
         <Paper className={classes.paper}>
           <Grid container className={classes.layout} direction="column">
-            <Grid container className={classes.container} spacing={2}>
+            <Grid container className={classes.container} spacing={0}>
               <Grid item>
                 <Avatar
                   className={classes.avatar}
