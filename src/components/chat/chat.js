@@ -3,7 +3,7 @@ import React from "react"
 import { Container } from "@material-ui/core"
 import PhotoIcon from "@material-ui/icons/Photo"
 import SendIcon from "@material-ui/icons/Send"
-import { chatStyles, messageStyles, messagesStyles } from "./ChatStyles"
+import { chatStyles, messageStyles, messagesStyles } from "./chatStyles"
 
 function Messages(props) {
   const classes = messagesStyles(props)
@@ -15,7 +15,7 @@ function Message(props) {
   return <div className={classes.message}>{props.children}</div>
 }
 
-function Chat() {
+export function Chat() {
   const classes = chatStyles()
   return (
     <Container maxWidth="sm">

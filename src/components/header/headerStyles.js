@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 import ChatIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import React from "react";
+import {Link} from "react-router-dom"
 
 export const useStyles = makeStyles({
         button: {
@@ -66,17 +67,19 @@ export const ExpansionPanelDetails = withStyles((theme) => ({
     },
 }))(MuiExpansionPanelDetails);
 
-export const HeaderLink = ({buttonClass, fun, text, img}) => {
+export const HeaderLink = ({buttonClass, fun, text, img, link}) => {
     return (
     <button onClick={fun} className={buttonClass}>
-        <Grid container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justify="center">
-            <Grid item xs>{img}</Grid>
-            <Grid item xs>{text}</Grid>
-        </Grid>
+        <Link to={link}>
+            <Grid container
+                  spacing={0}
+                  direction="column"
+                  alignItems="center"
+                  justify="center">
+                <Grid item xs>{img}</Grid>
+                <Grid item xs>{text}</Grid>
+            </Grid>
+        </Link>
     </button>
     )
 }

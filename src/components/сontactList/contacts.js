@@ -11,7 +11,7 @@ import {
 import {useStyles} from "./contactsStyles"
 import {state} from "./tempLocalStore"
 
-export default function ContactsList(props) {
+export function ContactsList(props) {
     const classes = useStyles()
     const users = state.users
     const listItems = users.map((user) =>
@@ -55,3 +55,4 @@ export default function ContactsList(props) {
         </List>
     )
 }
+export default ContactsList;
