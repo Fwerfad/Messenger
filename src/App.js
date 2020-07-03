@@ -44,8 +44,8 @@ class App extends React.Component {
         <Layout>
           <Switch>
             <Route path="/Chat" component={ChatFunction}/>
-            <Route path="/Profiles" component={ProfileFunction}/>
-            <Route path="/Contacts" component={ContactFunction}/>
+            <Route path="/Profiles" component={ProfileComponent}/>
+            <Route path="/Contacts" component={ContactComponent}/>
             <Route path="/" render={() => (<Redirect to={'/Chat'}/>)}/>
           </Switch>
         </Layout>
@@ -58,11 +58,11 @@ function ChatFunction() {
   return <Chat/>;
 }
 
-function ProfileFunction() {
+function ProfileComponent() {
   return <Profile/>;
 }
 
-function ContactFunction() {
+function ContactComponent() {
   return <ContactsList/>
 }
 
