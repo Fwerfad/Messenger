@@ -5,12 +5,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-} from "react-router-dom";
-import ContactsList from "./components/сontactList/contactsContainer";
-import Chat from "./components/chat/chatContainer";
-import Profile from "./components/profile/profileContainer";
-import Layout from "./components/layout/layoutContainer";
+  Redirect,
+} from "react-router-dom"
+import ContactsList from "./Components/сontactList/contactsContainer"
+import Chat from "./Components/chat/Chat"
+import Profile from "./Components/profile/profileContainer"
+import Layout from "./Components/layout/layoutContainer"
 
 class App extends React.Component {
   // TODO move isSignedIn to redux
@@ -43,10 +43,10 @@ class App extends React.Component {
       <Router>
         <Layout>
           <Switch>
-            <Route path="/Chat" component={ChatFunction}/>
-            <Route path="/Profiles" component={ProfileFunction}/>
-            <Route path="/Contacts" component={ContactFunction}/>
-            <Route path="/" render={() => (<Redirect to={'/Chat'}/>)}/>
+            <Route path="/Chat" component={ChatFunction} />
+            <Route path="/Profiles" component={ProfileFunction} />
+            <Route path="/Contacts" component={ContactFunction} />
+            <Route path="/" render={() => <Redirect to={"/Chat"} />} />
           </Switch>
         </Layout>
       </Router>
@@ -55,15 +55,15 @@ class App extends React.Component {
 }
 
 function ChatFunction() {
-  return <Chat/>;
+  return <Chat />
 }
 
 function ProfileFunction() {
-  return <Profile/>;
+  return <Profile />
 }
 
 function ContactFunction() {
-  return <ContactsList/>
+  return <ContactsList />
 }
 
 export default App

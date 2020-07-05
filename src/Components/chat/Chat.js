@@ -1,19 +1,20 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react"
+import { connect } from "react-redux"
 import PhotoIcon from "@material-ui/icons/Photo"
 import SendIcon from "@material-ui/icons/Send"
-import {chatStyles, messageStyles, messagesStyles } from "./chatStyles"
-import IconButton from "@material-ui/core/IconButton";
+import { chatStyles, messageStyles, messagesStyles } from "./chatStyles"
+import IconButton from "@material-ui/core/IconButton"
 import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Avatar,
-  Typography
-} from "@material-ui/core";
+  Typography,
+} from "@material-ui/core"
 
-function Messages(props) {
+function MessagesContainer(props) {
   const classes = messagesStyles(props)
   return <Typography className={classes.messages}>{props.children}</Typography>
 }
@@ -23,128 +24,55 @@ function Message(props) {
   return <Typography className={classes.message}>{props.children}</Typography>
 }
 
-export function Chat() {
+function Chat(props) {
   const classes = chatStyles()
 
-  const controllers = <div className={classes.chatContollers}>
-    <IconButton type="button" className={classes.imageInput}>
-      <PhotoIcon className={classes.imageInputIcon} />
-    </IconButton>
-    <div className={classes.messageInputContainer}>
-      <input
+  const controllers = (
+    <div className={classes.chatContollers}>
+      <IconButton type="button" className={classes.imageInput}>
+        <PhotoIcon className={classes.imageInputIcon} />
+      </IconButton>
+      <div className={classes.messageInputContainer}>
+        <input
           type="text"
           className={classes.messageText}
           placeholder="Message..."
-      />
+        />
+      </div>
+      <div className={classes.sendMessageContainer}>
+        <IconButton className={classes.sendMessageButton} type="submit">
+          <SendIcon></SendIcon>
+        </IconButton>
+      </div>
     </div>
-    <div className={classes.sendMessageContainer}>
-      <IconButton className={classes.sendMessageButton} type="submit">
-        <SendIcon></SendIcon>
-      </IconButton>
-    </div>
-  </div>
+  )
 
   return (
     <div className={classes.container}>
       <div className={classes.chat}>
-        <Messages mine>
-          <Message mine>Конишуа! 🤡</Message>
-        </Messages>
-        <Messages yours>
-          <Message yours>Охайо! 👹</Message>
-          <Message yours>
-            CSS — формальный язык описания внешнего вида документа, написанного
-            с использованием языка разметки. Преимущественно используется как
-            средство описания, оформления внешнего вида веб-страниц, написанных
-            с помощью языков разметки HTML и XHTML, но может также применяться к
-            любым XML-документам, например, к SVG или XUL.
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>🤔</Message>
-          <Message mine>
-            HTML — стандартизированный язык разметки документов во Всемирной
-            паутине. Большинство веб-страниц содержат описание разметки на языке
-            HTML. Язык HTML интерпретируется браузерами; полученный в результате
-            интерпретации форматированный текст отображается на экране монитора
-            компьютера или мобильного устройства
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>Конишуа! 🤡</Message>
-        </Messages>
-        <Messages yours>
-          <Message yours>Охайо! 👹</Message>
-          <Message yours>
-            CSS — формальный язык описания внешнего вида документа, написанного
-            с использованием языка разметки. Преимущественно используется как
-            средство описания, оформления внешнего вида веб-страниц, написанных
-            с помощью языков разметки HTML и XHTML, но может также применяться к
-            любым XML-документам, например, к SVG или XUL.
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>🤔</Message>
-          <Message mine>
-            HTML — стандартизированный язык разметки документов во Всемирной
-            паутине. Большинство веб-страниц содержат описание разметки на языке
-            HTML. Язык HTML интерпретируется браузерами; полученный в результате
-            интерпретации форматированный текст отображается на экране монитора
-            компьютера или мобильного устройства
-          </Message>
-        </Messages>
-        <Messages yours>
-          <Message yours>Охайо! 👹</Message>
-          <Message yours>
-            CSS — формальный язык описания внешнего вида документа, написанного
-            с использованием языка разметки. Преимущественно используется как
-            средство описания, оформления внешнего вида веб-страниц, написанных
-            с помощью языков разметки HTML и XHTML, но может также применяться к
-            любым XML-документам, например, к SVG или XUL.
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>🤔</Message>
-          <Message mine>
-            HTML — стандартизированный язык разметки документов во Всемирной
-            паутине. Большинство веб-страниц содержат описание разметки на языке
-            HTML. Язык HTML интерпретируется браузерами; полученный в результате
-            интерпретации форматированный текст отображается на экране монитора
-            компьютера или мобильного устройства
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>Конишуа! 🤡</Message>
-        </Messages>
-        <Messages yours>
-          <Message yours>Охайо! 👹</Message>
-          <Message yours>
-            CSS — формальный язык описания внешнего вида документа, написанного
-            с использованием языка разметки. Преимущественно используется как
-            средство описания, оформления внешнего вида веб-страниц, написанных
-            с помощью языков разметки HTML и XHTML, но может также применяться к
-            любым XML-документам, например, к SVG или XUL.
-          </Message>
-        </Messages>
-        <Messages mine>
-          <Message mine>🤔</Message>
-          <Message mine>
-            HTML — стандартизированный язык разметки документов во Всемирной
-            паутине. Большинство веб-страниц содержат описание разметки на языке
-            HTML. Язык HTML интерпретируется браузерами; полученный в результате
-            интерпретации форматированный текст отображается на экране монитора
-            компьютера или мобильного устройства
-          </Message>
-        </Messages>
-        <div style={{visibility: "hidden"}}>
-          {controllers}
-        </div>
+        {[...props.messages].reverse().map((message) => {
+          const yours = message.senderId !== "user1"
+          return (
+            <MessagesContainer key={message.date.nanoseconds} yours={yours}>
+              <Message yours={yours}>{message.text}</Message>
+            </MessagesContainer>
+          )
+        })}
+        <div style={{ visibility: "hidden" }}>{controllers}</div>
       </div>
-      <div className={classes.chatControllersPosition}>
-        {controllers}
-      </div>
+      <div className={classes.chatControllersPosition}>{controllers}</div>
     </div>
   )
 }
 
-export default Chat
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.chatsReducer.messages,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat)
