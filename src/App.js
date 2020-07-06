@@ -11,6 +11,7 @@ import ContactsList from "./components/сontactList/contactsContainer";
 import Chat from "./components/chat/chatContainer";
 import Profile from "./components/profile/profileContainer";
 import Layout from "./components/layout/layoutContainer";
+import SearchForm from "./components/search/contactSearch/searchContainer";
 
 class App extends React.Component {
   // TODO move isSignedIn to redux
@@ -63,7 +64,12 @@ function ProfileComponent() {
 }
 
 function ContactComponent() {
-  return <ContactsList/>
+  return (
+      <div>
+        <SearchForm/>
+        <ContactsList/>
+      </div>
+  )
 }
 
 export default App

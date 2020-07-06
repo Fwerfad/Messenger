@@ -1,58 +1,34 @@
-import React from "react";
+import React, {Component, useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 import {useStyles} from "./searchStyles";
 import {useHistory, withRouter} from 'react-router';
-import ContactList from "./searchResultsContainer";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import {AccountCircle} from "@material-ui/icons";
 
 export const SearchForm = () => {
     return (
-        <Switch>
-            <Route exact path="/"/>
-            <Route exact path="/Chat" component={withRouter(InputButton)}></Route>
-            <Route exact path="/Chat/Input" component={withRouter(InputTextField)}></Route>
-            <Route path="/Chat/Input/Results" component={withRouter(SearchResult)}></Route>
-        </Switch>
+        <InputField/>
     );
 };
-function InputButton() {
-    const classes = useStyles();
-    return (
-            <button className={classes.button}>
-                <Link to="/Chat/Input" className={classes.link}>
-                    Search
-                </Link>
-            </button>
-    )
-}
-function InputTextField() {
+
+function InputField() {
     let history = useHistory();
     const classes = useStyles();
-
     function handleClick(ev) {
         console.log(`Pressed keyCode ${ev.key}`);
         if (ev.key === 'Enter') {
-            history.push("/Chat/Input/Results");
-            ev.preventDefault();
+            history.push("/Search");
         }
     }
     return (
-            <TextField id="searchInputField" label="Введите имя" variant="outlined" onKeyPress={handleClick}
-                       className={classes.inputField}/>
-        )
-}
-function SearchResult() {
-
-    return (
-        <div>
-            {InputButton()}
-            <ContactList/>
-        </div>
+        <TextField id="searchInputField" label="Введите имя" onKeyPress={handleClick}
+                   className={classes.inputField}
+                   InputProps={{
+                       startAdornment: (
+                           <InputAdornment position="start">
+                               <AccountCircle />
+                           </InputAdornment>),}}
+        />
     )
 }
 
