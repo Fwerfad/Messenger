@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes"
-import axios from "axios"
 import { chatsService } from "../../../services/ChatsService"
 import { messagesService } from "../../../services/MessagesService"
 
@@ -38,17 +37,18 @@ export const fetchMessagesStart = () => {
   }
 }
 
-export const fetchMessagesSuccess = (messages) => {
+export const fetchMessagesSuccess = (messages, chatID) => {
   return {
     type: actionTypes.FETCH_MESSAGES_SUCCESS,
     messages: messages,
+    chatID: chatID,
   }
 }
 
 export const fetchMessages = (chatID, limit) => {
   return (dispatch) => {
     messagesService.messagesListener(chatID, limit, (messages) => {
-      dispatch(fetchMessagesSuccess(messages))
+      dispatch(fetchMessagesSuccess(messages, chatID))
     })
   }
 }

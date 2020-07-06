@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
 import PhotoIcon from "@material-ui/icons/Photo"
 import SendIcon from "@material-ui/icons/Send"
@@ -13,6 +13,7 @@ import {
   Avatar,
   Typography,
 } from "@material-ui/core"
+import { messagesService } from "../../services/MessagesService"
 
 function MessagesContainer(props) {
   const classes = messagesStyles(props)
@@ -26,6 +27,17 @@ function Message(props) {
 
 function Chat(props) {
   const classes = chatStyles()
+  const [text, setText] = useState("")
+
+  const onChangeText = (e) => {
+    setText(e.target.value)
+  }
+
+  const myId = "user1"
+
+  const onSend = (e) => {
+    messagesService.sendMessage(myId, props.chatID, text)
+  }
 
   const controllers = (
     <div className={classes.chatContollers}>
@@ -34,12 +46,13 @@ function Chat(props) {
       </IconButton>
       <div className={classes.messageInputContainer}>
         <input
+          onChange={onChangeText}
           type="text"
           className={classes.messageText}
           placeholder="Message..."
         />
       </div>
-      <div className={classes.sendMessageContainer}>
+      <div className={classes.sendMessageContainer} onClick={onSend}>
         <IconButton className={classes.sendMessageButton} type="submit">
           <SendIcon></SendIcon>
         </IconButton>
@@ -51,7 +64,7 @@ function Chat(props) {
     <div className={classes.container}>
       <div className={classes.chat}>
         {[...props.messages].reverse().map((message) => {
-          const yours = message.senderId !== "user1"
+          const yours = message.senderId !== myId
           return (
             <MessagesContainer key={message.date.nanoseconds} yours={yours}>
               <Message yours={yours}>{message.text}</Message>
@@ -71,6 +84,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    chatID: state.chatsReducer.chatID,
     messages: state.chatsReducer.messages,
   }
 }
