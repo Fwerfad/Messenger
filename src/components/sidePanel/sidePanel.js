@@ -28,8 +28,15 @@ export const SidePanel = (props) => {
                 }}
             >
                 <div className={classes.toolbar}>
+                    <div>
+
+                    </div>
                     <IconButton onClick={toggleDrawer}>
-                        {isOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {isOpen ?
+                            <div>
+                                <ChevronLeftIcon />
+                            </div> :
+                            <ChevronRightIcon/>}
                     </IconButton>
                 </div>
                 <Divider />
