@@ -56,7 +56,7 @@ class App extends React.Component {
 }
 
 function ChatFunction() {
-  return <Chat/>;
+  return <Chat />
 }
 
 function ProfileComponent() {

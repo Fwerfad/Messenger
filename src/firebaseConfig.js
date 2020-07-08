@@ -11,7 +11,8 @@ export let firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
-export { firebase }
+const firestore = firebase.firestore()
+export { firebase, firestore }
 
 export let uiConfig = {
   signInFlow: "popup",

@@ -1,33 +1,33 @@
-import React, {useReducer} from 'react';
-import {AppBar, Toolbar} from '@material-ui/core'
+import React, { useReducer } from "react"
+import { AppBar, Toolbar } from "@material-ui/core"
 
-import Header from "../header/headerContainer";
-import SidePanel from "../sidePanel/sidePanel";
-import Modal from "../modal/modalContainer";
+import Header from "../header/headerContainer"
+import SidePanel from "../sidePanel/sidePanel"
+import Modal from "../modal/modalContainer"
 
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChatIcon from '@material-ui/icons/Chat';
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import ChatIcon from "@material-ui/icons/Chat"
+import Container from "@material-ui/core/Container"
 
-import useStyles from "./layoutStyles";
-import ContactsList from "../сontactList/contacts";
-
+import useStyles from "./layoutStyles"
+import ContactsList from "../сontactList/contacts"
 
 export const Layout = (props) => {
-    const [isOpen, toggleModal] = useReducer((state) => !state, false);
-    const classes = useStyles();
+  const [isOpen, toggleModal] = useReducer((state) => !state, false)
+  const classes = useStyles()
 
-    const createNewChat = (userID) => {
-        //TODO
-    }
+  const createNewChat = (userID) => {
+    //TODO
+  }
 
-    const editProfile = () => {
-        //TODO
-    }
+  const editProfile = () => {
+    //TODO
+  }
 
-    const addContact = () => {
-        //TODO
-    }
+  const addContact = () => {
+    //TODO
+  }
 
     return (
             <div className={classes.root}>
