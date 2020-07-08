@@ -29,54 +29,42 @@ export const Layout = (props) => {
     //TODO
   }
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar className={classes.toolBar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Header />
-          <div>
-            <IconButton onClick={toggleModal} color="inherit">
-              <ChatIcon color="action" />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <SidePanel />
-      <main className={classes.content}>
-        <Container style={{ position: "relative", height: "100vh" }}>
-          <div className={classes.contentContainer} style={{ top: 0, left: 0 }}>
-            <div className={classes.toolbar} />
-            {props.children}
-          </div>
-        </Container>
-        <Modal isOpen={isOpen} close={toggleModal}>
-          <ContactsList
-            users={[
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-              { name: "john" },
-            ]}
-          />
-        </Modal>
-      </main>
-    </div>
-  )
+    return (
+            <div className={classes.root}>
+                <AppBar
+                    position="fixed"
+                    className={classes.appBar}
+                >
+                    <Toolbar className={classes.toolBar}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            className={classes.menuButton}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Header/>
+                        <div>
+                            <IconButton
+                                onClick={toggleModal}
+                                color="inherit"
+                            >
+                                <ChatIcon color="action"/>
+                            </IconButton>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                <SidePanel/>
+                <main className={classes.content}>
+                    <div className={classes.contentContainer}>
+                        <div className={classes.toolbar} />
+                        {props.children}
+                    </div>
+                    <Modal isOpen={isOpen} close={toggleModal}>
+                        <ContactsList users={[{name: "john"}, {name: "john"}, {name: "john"}, {name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},{name: "john"},]}/>
+                    </Modal>
+                </main>
+            </div>
+    );
 }

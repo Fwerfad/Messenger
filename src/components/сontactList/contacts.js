@@ -15,9 +15,8 @@ export function ContactsList(props) {
     const classes = useStyles()
     const users = state.users
     const listItems = users.map((user) =>
-        <Fragment>
+        <Fragment key={user.name}>
             <ListItem className={classes.listItem}
-                      key={user.name}
                       alignItems="flex-start">
                 <ListItemAvatar>
                     <Avatar src={user.avatar} alt={'avatar'}/>
@@ -37,7 +36,7 @@ export function ContactsList(props) {
                 <ListItemText className={classes.contactLastMessageText}>
                     <React.Fragment>
                         <Typography className={classes.contactLastMessageHeader}
-                                    display="span">
+                                    display="inline">
                             Last message
                         </Typography>
                         <Typography className={classes.contactLastMessageContent}
@@ -55,4 +54,5 @@ export function ContactsList(props) {
         </List>
     )
 }
+
 export default ContactsList;

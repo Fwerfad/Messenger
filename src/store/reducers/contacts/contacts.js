@@ -1,5 +1,6 @@
 import * as actionTypes from '../../actions/contacts/actionTypes'
 import {updateObject} from "../utility";
+import {state} from "./tempLocalStore"
 
 const initialState = {
     contacts: [],
