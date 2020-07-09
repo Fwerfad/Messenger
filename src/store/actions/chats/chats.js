@@ -38,6 +38,7 @@ export const fetchMessagesStart = () => {
 }
 
 export const fetchMessagesSuccess = (messages, chatID) => {
+  console.log("messages", messages, chatID)
   return {
     type: actionTypes.FETCH_MESSAGES_SUCCESS,
     messages: messages,
@@ -46,6 +47,7 @@ export const fetchMessagesSuccess = (messages, chatID) => {
 }
 
 export const fetchMessages = (chatID, limit) => {
+  console.log("it happens")
   return (dispatch) => {
     messagesService.messagesListener(chatID, limit, (messages) => {
       dispatch(fetchMessagesSuccess(messages, chatID))

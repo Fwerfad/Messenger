@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios'
+import {contactsService} from "../../../services/ContactsService"
 
 export const fetchSuccess = (contacts) => {
     return {
@@ -7,6 +8,18 @@ export const fetchSuccess = (contacts) => {
         contacts: contacts
     }
 };
+
+export const refreshEnabled = () => {
+    return {
+        type: actionTypes.REFRESH_ENABLED,
+    }
+}
+
+export const refreshDisabled = () => {
+    return {
+        type: actionTypes.REFRESH_DISABLED,
+    }
+}
 
 export const fetchFailed = (error) => {
     return {
@@ -21,24 +34,22 @@ export const fetchStart = () => {
     }
 };
 
-export const fetchContacts = (token, userID) => {
-    return dispatch => {
-        const query = `'https://###.firebaseio.com/?auth=${token}&orderBy="userId"&equalTo="${userID}"`
-        axios.get("/chats.json" + query)
-            .then((response) => {
-                const contacts = [];
-                for (let key in response.data)
-                    contacts.push({
-                        id: key,
-                        ...response.data[key]
-                    });
-                dispatch(fetchSuccess(contacts))
-            })
-            .catch((err) => {
-                fetchFailed(err)
-            })
+export const fetchContacts = (userID, limit) => {
+    console.log("here be dragons")
+    return (dispatch) => {
+       contactsService.contactsListener(userID, limit, (contacts) => {
+           dispatch(fetchSuccess(contacts))
+       })
     }
 };
+export const fetchContact = (userID, user) => {
+    return (dispatch) => {
+        console.log(userID, user)
+        contactsService.badContactListener(userID, user, (contacts) => {
+            dispatch(fetchSuccess(contacts))
+        })
+    }
+}
 
 export const addContactSuccess = (contactID) => {
     return {
@@ -54,12 +65,12 @@ export const addContactFailed = (error) => {
     }
 };
 
-export const addContact = (contactID, token) => {
+export const addContact = (userID, token) => {
     return dispatch => {
         const query = `'https://###.firebaseio.com/?auth=${token}&orderBy="userId"&equalTo="${userID}"`
         axios.post('/contacts.json' + token, {data: "some data IDK"})
             .then((response) => {
-                dispatch(addContactSuccess(response.data.name, contactID))
+                dispatch(addContactSuccess(response.data.name, userID))
             })
             .catch((err) => {
                 addContactFailed(err);

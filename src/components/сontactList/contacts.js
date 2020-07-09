@@ -1,27 +1,64 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useReducer} from "react";
 import {
     List,
     ListItem,
     ListItemAvatar,
     ListItemText,
     Avatar,
-    Typography
+    Typography, ListItemIcon, Tooltip
 } from "@material-ui/core";
-
 import {useStyles} from "./contactsStyles"
-import {state} from "./tempLocalStore"
+import {connect} from "react-redux";
+import * as contactsActions from "../../store/actions/contacts/contacts"
+import {useHistory} from "react-router";
+import { chatsService } from "../../services/ChatsService"
+import {fetchMessages} from "../../store/actions/chats/chats";
+import { store } from "../../index"
 
-export function ContactsList(props) {
+
+
+export const ContactsList = (props) => {
+    let history = useHistory();
+    console.log(store.getState().contactsReducer.refresh)
     const classes = useStyles()
-    const users = state.users
-    const listItems = users.map((user) =>
+    const moveToChat = (user, history) => {
+        chatsService.checkPersonalChats("user1", user.name).then(value => {
+            let respond = fetchMessages(value, 10)
+            console.log("CONTACTS", respond)
+            store.dispatch(respond)})
+        history.push("/Chat")
+    }
+
+    useEffect(() => {
+        if (props.contacts.length === 0 && props.refresh === true) {
+            props.fetchContacts("user1", 10)
+        }
+    })
+
+    function enableRefresh() {
+        console.log("Back in to the game!")
+        console.log(props)
+        props.refreshEnabled()
+        console.log(props)
+    }
+
+    function disableRefresh() {
+        console.log("Back in to the pit!")
+        console.log(props)
+        props.refreshDisabled()
+        console.log(props)
+    }
+
+    console.log("PROPS", props)
+    const listItems = props.contacts.map((user) =>
         <Fragment key={user.name}>
             <ListItem className={classes.listItem}
                       alignItems="flex-start">
                 <ListItemAvatar>
                     <Avatar src={user.avatar} alt={'avatar'}/>
                 </ListItemAvatar>
-                <ListItemText className={classes.listItemText}
+                <ListItemText onMouseDown={() => {moveToChat(user, history)}}
+                              className={classes.listItemText}
                               primary={
                                   <Typography className={classes.contactNameText}>
                                       {user.name}
@@ -55,4 +92,25 @@ export function ContactsList(props) {
     )
 }
 
-export default ContactsList;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchContacts: (user, limit) =>
+            dispatch(contactsActions.fetchContacts(user, limit)),
+        refreshEnabled: () =>
+            dispatch(contactsActions.refreshEnabled()),
+        refreshDisabled: () =>
+            dispatch(contactsActions.refreshDisabled()),
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        ContactsID: state.contactsReducer.user,
+        contacts: state.contactsReducer.contacts,
+        refresh: state.contactsReducer.refresh
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsList)
+

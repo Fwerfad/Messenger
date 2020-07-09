@@ -21,11 +21,12 @@ function MessagesContainer(props) {
 }
 
 function Message(props) {
+  console.log("message", props)
   const classes = messageStyles(props)
   return <Typography className={classes.message}>{props.children}</Typography>
 }
-
 function Chat(props) {
+  console.log("chats", props)
   const classes = chatStyles()
   const [text, setText] = useState("")
 
@@ -38,6 +39,7 @@ function Chat(props) {
   const onSend = (e) => {
     messagesService.sendMessage(myId, props.chatID, text)
   }
+
 
   const controllers = (
     <div className={classes.chatContollers}>

@@ -15,10 +15,17 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import PersonIcon from "@material-ui/icons/Person"
 import useStyles from "./sidePanelStyles"
+import Grid from "@material-ui/core/Grid";
+
+
 
 export const SidePanel = (props) => {
   const classes = useStyles()
   const [isOpen, toggleDrawer] = useReducer((state) => !state, false)
+
+  const setChat = ((chatId) => {
+  props.fetchMessages(chatId, 10)
+  })
 
   useEffect(() => {
     if (props.chats.length === 0) {
@@ -54,7 +61,7 @@ export const SidePanel = (props) => {
                   }}
                 >
                   <ListItemIcon>
-                    <PersonIcon fontSize="medium" />
+                    <PersonIcon fontSize="small" />
                   </ListItemIcon>
                   <Tooltip title={chat.users[1]}>
                     <ListItemText
@@ -73,12 +80,12 @@ export const SidePanel = (props) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     fetchCharts: (id, chatsNum) =>
-      dispatch(chatsActions.fetchChats(id, chatsNum)),
+        dispatch(chatsActions.fetchChats(id, chatsNum)),
     fetchMessages: (id, limit) =>
-      dispatch(chatsActions.fetchMessages(id, limit)),
+        dispatch(chatsActions.fetchMessages(id, limit))
   }
 }
 const mapStateToProps = (state) => {

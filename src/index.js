@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     profileReducer: profileReducer
 });
 
-const store = createStore(
+export const store = createStore(
     rootReducer,
     composeEnhancers(
         applyMiddleware(thunk)

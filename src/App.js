@@ -7,8 +7,8 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import ContactsList from "./components/сontactList/contactsContainer";
-import Chat from "./components/chat/chatContainer";
+import ContactsList from "./components/сontactList/contacts";
+import Chat from "./components/chat/Chat";
 import Profile from "./components/profile/profileContainer";
 import Layout from "./components/layout/layoutContainer";
 import SearchForm from "./components/search/contactSearch/searchContainer";

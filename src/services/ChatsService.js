@@ -30,6 +30,8 @@ class ChatsService {
     const docRef = await firestore.collection("users").doc(myId)
     const doc = await docRef.get()
     const userData = doc.data()
+    console.log("HERE")
+    console.log(userData.personal_chats[userId])
     return userData.personal_chats[userId]
   }
 
