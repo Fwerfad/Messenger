@@ -9,14 +9,17 @@ import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import ChatIcon from "@material-ui/icons/Chat"
 import Container from "@material-ui/core/Container"
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import useStyles from "./layoutStyles"
 import ContactsList from "../сontactList/contacts"
 
 export const Layout = (props) => {
   const [isOpen, toggleModal] = useReducer((state) => !state, false)
-  const classes = useStyles()
-
+  const classes = useStyles();
+  const logOff = () => {
+      this.state.isSignedIn = false;
+  };
   const createNewChat = (userID) => {
     //TODO
   }
@@ -51,6 +54,12 @@ export const Layout = (props) => {
                                 color="inherit"
                             >
                                 <ChatIcon color="action"/>
+                            </IconButton>
+                            <IconButton
+                                onClick={logOff}
+                                color="inherit"
+                            >
+                                <ExitToAppIcon color="action"/>
                             </IconButton>
                         </div>
                     </Toolbar>

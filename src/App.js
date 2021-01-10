@@ -12,11 +12,15 @@ import Chat from "./components/chat/Chat";
 import Profile from "./components/profile/profileContainer";
 import Layout from "./components/layout/layoutContainer";
 import SearchForm from "./components/search/contactSearch/searchContainer";
+import {connect} from "react-redux";
+import * as authActions from "./store/actions/auth/auth"
+
 
 class App extends React.Component {
   // TODO move isSignedIn to redux
   state = {
-    isSignedIn: false,
+    isLoggedOn: false,
+    currentUser: null,
   }
 
   componentDidMount() {
@@ -30,16 +34,19 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentUser)
     const auth = firebase.auth()
-
-    if (!this.state.isSignedIn) {
+    if (!this.state.isLoggedOn) {
+      this.state.isLoggedOn = true;
       return (
         <div>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </div>
       )
     }
-
+    this.state.currentUser = auth.currentUser.providerData[0];
+    console.log(this.state.currentUser)
+      //this.props.auth(auth.currentUser.providerData[0].displayName, auth.currentUser.providerData[0].uid);
     return (
       <Router>
         <Layout>
@@ -72,4 +79,23 @@ function ContactComponent() {
   )
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => {
+  return {
+    auth: (name, uid) => {
+      dispatch(authActions.auth(name, uid))
+    },
+    logout : () => {
+      dispatch(authActions.logout())
+    }
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.authReducer.token,
+    userId: state.authReducer.userId,
+    loading: state.authReducer.loading,
+    error: state.authReducer.error,
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

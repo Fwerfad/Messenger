@@ -9,6 +9,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+    console.log(state + " " + action + " REDUCER");
     switch (action.type) {
         case actionTypes.AUTH_START:
             return updateObject(state, {

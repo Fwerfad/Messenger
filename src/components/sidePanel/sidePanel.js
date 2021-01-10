@@ -1,4 +1,4 @@
-import React, { Fragment, useReducer, useEffect } from "react"
+import React, {Fragment, useReducer, useEffect, useState} from "react"
 import { connect } from "react-redux"
 import * as chatsActions from "../../store/actions/chats/chats"
 import {
@@ -15,24 +15,42 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import PersonIcon from "@material-ui/icons/Person"
 import useStyles from "./sidePanelStyles"
-import Grid from "@material-ui/core/Grid";
-
+import AddIcon from '@material-ui/icons/Add';
+import {firebase} from "../../firebaseConfig";
+import Modal from "@material-ui/core/Modal";
+import {userService} from "../../services/UserService";
+import {chatsService} from "../../services/ChatsService";
 
 
 export const SidePanel = (props) => {
   const classes = useStyles()
   const [isOpen, toggleDrawer] = useReducer((state) => !state, false)
-
+  const [open, handleOpen] = useState(false)
+  const [nickname, changeNickname] = useState("")
+  const [message, changeMessage] = useState("")
+  const myId = firebase.auth().currentUser.uid
+  const [refresh, setRefresh] = useState(true);
   const setChat = ((chatId) => {
   props.fetchMessages(chatId, 10)
   })
 
-  useEffect(() => {
-    if (props.chats.length === 0) {
-      props.fetchCharts("user1", 10)
-    }
-    console.log(props)
-  })
+  if (props.chats.length === 0 && refresh) {
+    setRefresh(false)
+    props.fetchCharts(myId, 10)
+    console.log(props.chats)
+  }
+
+  function addChat() {
+    handleOpen(!open);
+    chatsService.getChat("YW2uxTijNIAvJD4WamFr")
+  }
+
+  function startChat() {
+    handleOpen(!open);
+    Promise.resolve(userService.findUser(nickname)).then((e) => chatsService.createPersonalChatWithMessage(
+        myId, e, message, firebase.auth().currentUser.displayName, nickname))
+    setRefresh(true)
+  }
 
   return (
     <Fragment>
@@ -44,6 +62,20 @@ export const SidePanel = (props) => {
         }}
       >
         <div className={classes.toolbar}>
+          <IconButton onClick={addChat}>
+            {isOpen ? <AddIcon /> : null}
+          </IconButton>
+          <Modal
+              open={open}
+              onClose={startChat}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+          >
+            <div className={classes.bestModal}>
+              <input className={classes.nickname} placeholder="Никнейм(Полный)" onChange={(e) => changeNickname(e.target.value)}/>
+              <input className={classes.firstMessage} placeholder="Ваше приветственное сообщение" onChange={(e) => changeMessage(e.target.value)}/>
+            </div>
+          </Modal>
           <IconButton onClick={toggleDrawer}>
             {isOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
@@ -63,10 +95,10 @@ export const SidePanel = (props) => {
                   <ListItemIcon>
                     <PersonIcon fontSize="small" />
                   </ListItemIcon>
-                  <Tooltip title={chat.users[1]}>
+                  <Tooltip title={chat.users[3]}>
                     <ListItemText
                       className={classes.message}
-                      primary={chat.users[1]}
+                      primary={chat.users[3]}
                       secondary={chat.lastMessage}
                     />
                   </Tooltip>

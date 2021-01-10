@@ -1,5 +1,6 @@
 import { firestore } from "../firebaseConfig"
 import { messagesService } from "./MessagesService"
+import {userService} from "./UserService";
 
 class ChatsService {
   async getChat(chatId) {
@@ -41,14 +42,16 @@ class ChatsService {
     await firestore.collection(`users`).doc(userId2).update(personalChats)
   }
 
-  async createPersonalChatWithMessage(myId, otherUserId, text) {
-    const docRef = await firestore.collection("chats").add({
-      users: [myId, otherUserId],
-    })
-    const chatId = docRef.id
-    await this.updatePersonalChats(myId, otherUserId, chatId)
-    await this.updatePersonalChats(otherUserId, myId, chatId)
-    await messagesService.sendMessage(myId, chatId, text)
+  async createPersonalChatWithMessage(myId, otherUserId, text, myNickName, otherNickName) {
+    if (await this.checkPersonalChats(myId, otherUserId) == null) {
+      const docRef = await firestore.collection("chats").add({
+        users: [myId, otherUserId, myNickName, otherNickName],
+      })
+      const chatId = docRef.id
+      await this.updatePersonalChats(myId, otherUserId, chatId)
+      await this.updatePersonalChats(otherUserId, myId, chatId)
+      await messagesService.sendMessage(myId, chatId, text)
+    }
   }
 }
 

@@ -3,6 +3,24 @@ import {makeStyles} from "@material-ui/core/styles";
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
+    bestModal: {
+        display: 'block',
+        width: 500,
+        margin: 10,
+        position: 'absolute',
+        left: 250,
+        top: 150
+    },
+    nickname: {
+        width: 500
+    },
+    firstMessage: {
+        width: 500,
+        height: 200
+    },
+    chat: {
+        zIndex: 10
+    },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
@@ -47,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     hiddenScroll: {
         overflow: "hidden",
         height: "100%",
-        width: "100%",
+        width: "100%"
     }
 }));
 
