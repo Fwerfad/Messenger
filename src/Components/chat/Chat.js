@@ -13,6 +13,7 @@ import {
   Avatar,
   Typography,
 } from "@material-ui/core"
+import { firebase, uiConfig } from "./../../firebaseConfig"
 import { messagesService } from "../../services/MessagesService"
 
 function MessagesContainer(props) {
@@ -34,8 +35,7 @@ function Chat(props) {
     setText(e.target.value)
   }
 
-  const myId = "user1"
-
+  const myId = firebase.auth().currentUser.uid
   const onSend = (e) => {
     messagesService.sendMessage(myId, props.chatID, text)
   }

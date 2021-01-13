@@ -13,12 +13,14 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import useStyles from "./layoutStyles"
 import ContactsList from "../сontactList/contacts"
+import {firebase} from "../../firebaseConfig";
+
 
 export const Layout = (props) => {
   const [isOpen, toggleModal] = useReducer((state) => !state, false)
   const classes = useStyles();
   const logOff = () => {
-      this.state.isSignedIn = false;
+      firebase.auth().signOut()
   };
   const createNewChat = (userID) => {
     //TODO

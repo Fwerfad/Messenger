@@ -7,13 +7,13 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import ContactsList from "./components/сontactList/contacts";
-import Chat from "./components/chat/Chat";
-import Profile from "./components/profile/profileContainer";
-import Layout from "./components/layout/layoutContainer";
-import SearchForm from "./components/search/contactSearch/searchContainer";
 import {connect} from "react-redux";
 import * as authActions from "./store/actions/auth/auth"
+import Chat from "./Components/chat/Chat";
+import {ContactsList} from "./Components/сontactList/contacts";
+import Layout from "./Components/layout/layoutContainer";
+import Profile from "./Components/profile/profile";
+import SearchForm from "./Components/search/contactSearch/search";
 
 
 class App extends React.Component {
@@ -34,9 +34,8 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentUser)
     const auth = firebase.auth()
-    if (!this.state.isLoggedOn) {
+    if (!auth.currentUser) {
       this.state.isLoggedOn = true;
       return (
         <div>
@@ -44,9 +43,9 @@ class App extends React.Component {
         </div>
       )
     }
+
     this.state.currentUser = auth.currentUser.providerData[0];
     console.log(this.state.currentUser)
-      //this.props.auth(auth.currentUser.providerData[0].displayName, auth.currentUser.providerData[0].uid);
     return (
       <Router>
         <Layout>
