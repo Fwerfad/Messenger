@@ -43,9 +43,6 @@ function Chat(props) {
 
   const controllers = (
     <div className={classes.chatContollers}>
-      <IconButton type="button" className={classes.imageInput}>
-        <PhotoIcon className={classes.imageInputIcon} />
-      </IconButton>
       <div className={classes.messageInputContainer}>
         <input
           onChange={onChangeText}

@@ -116,12 +116,14 @@ export let messageStyles = makeStyles({
   message: (props) => {
     const yoursOrMineStyles = props.yours
       ? {
+
           alignItems: "flex-start",
           marginRight: "25%",
           backgroundColor: "#e6e7e8",
           position: "relative",
         }
       : {
+
           alignItems: "flex-end",
           color: "black",
           marginLeft: "25%",
