@@ -16,7 +16,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight"
 import PersonIcon from "@material-ui/icons/Person"
 import useStyles from "./sidePanelStyles"
 import AddIcon from '@material-ui/icons/Add';
-import {firebase} from "../../firebaseConfig";
+import {firebase, firestore} from "../../firebaseConfig";
 import Modal from "@material-ui/core/Modal";
 import {userService} from "../../services/UserService";
 import {chatsService} from "../../services/ChatsService";
@@ -28,7 +28,6 @@ export const SidePanel = (props) => {
   const [open, handleOpen] = useState(false)
   const [nickname, changeNickname] = useState("")
   const [message, changeMessage] = useState("")
-  const myId = firebase.auth().currentUser.uid
   const [refresh, setRefresh] = useState(true);
   const setChat = ((chatId) => {
   props.fetchMessages(chatId, 10)
@@ -36,19 +35,20 @@ export const SidePanel = (props) => {
 
   if (props.chats.length === 0 && refresh) {
     setRefresh(false)
-    props.fetchCharts(myId, 10)
+    props.fetchCharts(firebase.auth().currentUser.providerData[0].uid, 10)
     console.log(props.chats)
   }
 
   function addChat() {
     handleOpen(!open);
-    chatsService.getChat("YW2uxTijNIAvJD4WamFr")
   }
 
   function startChat() {
     handleOpen(!open);
-    Promise.resolve(userService.findUser(nickname)).then((e) => chatsService.createPersonalChatWithMessage(
-        myId, e, message, firebase.auth().currentUser.displayName, nickname))
+    Promise.resolve(userService.findUser(nickname)).then((e) => {
+      chatsService.createPersonalChatWithMessage(
+          firebase.auth().currentUser.providerData[0].uid, e, message, firebase.auth().currentUser.displayName, nickname)
+    })
     setRefresh(true)
   }
 
@@ -95,10 +95,10 @@ export const SidePanel = (props) => {
                   <ListItemIcon>
                     <PersonIcon fontSize="small" />
                   </ListItemIcon>
-                  <Tooltip title={chat.users[3]}>
+                  <Tooltip title={chat.users[0] !== firebase.auth().currentUser.providerData[0].uid ? chat.users[2]: chat.users[3]}>
                     <ListItemText
                       className={classes.message}
-                      primary={chat.users[3]}
+                      primary={chat.users[0] !== firebase.auth().currentUser.providerData[0].uid ? chat.users[2]: chat.users[3]}
                       secondary={chat.lastMessage}
                     />
                   </Tooltip>

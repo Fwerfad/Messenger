@@ -35,7 +35,7 @@ function Chat(props) {
     setText(e.target.value)
   }
 
-  const myId = firebase.auth().currentUser.uid
+  const myId = firebase.auth().currentUser.providerData[0].uid
   const onSend = (e) => {
     messagesService.sendMessage(myId, props.chatID, text)
   }
@@ -66,7 +66,9 @@ function Chat(props) {
     <div className={classes.container}>
       <div className={classes.chat}>
         {[...props.messages].reverse().map((message) => {
-          const yours = message.senderId !== myId
+          console.log(message.senderId)
+          console.log(myId)
+          const yours = !(message.senderId === myId)
           return (
             <MessagesContainer key={message.date.nanoseconds} yours={yours}>
               <Message yours={yours}>{message.text}</Message>
