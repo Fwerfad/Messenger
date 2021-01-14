@@ -1,6 +1,5 @@
 import { firestore } from "../firebaseConfig"
 import { messagesService } from "./MessagesService"
-import {userService} from "./UserService";
 
 class ChatsService {
   async getChat(chatId) {
@@ -8,38 +7,44 @@ class ChatsService {
     return docRef.data()
   }
 
-  chatsListener(myId, limit = 3, chatsCallback = () => {}) {
-    return firestore
-      .collection("chats")
-      .where("users", "array-contains", `${myId}`)
-      .orderBy("lastActivity", "desc")
-      .limit(limit)
-      .onSnapshot((docSnapshot) => {
-        let chats = []
-        docSnapshot.forEach((doc) => {
-          let data = {
-            ...doc.data(),
-            id: doc.id,
-          }
-          chats.push(data)
-        })
-        chatsCallback(chats)
-      })
+  async chatsListener(myId, limit = 3, chatsCallback = () => {
+  }) {
+    console.log(myId)
+    let chats = []
+    const querySnapshot = await firestore
+        .collection("chats")
+        .where("users", "array-contains", `${myId}`)
+        .limit(limit)
+        .get()
+
+    querySnapshot.forEach((doc) => {
+      let data = {
+        ...doc.data(),
+        id: doc.id,
+      }
+      chats.push(data)
+    })
+    return chatsCallback(chats)
   }
 
   async checkPersonalChats(myId, userId) {
-    const docRef = await firestore.collection("users").doc(myId)
-    const doc = await docRef.get()
-    const userData = doc.data()
-    console.log("HERE")
-    console.log(userData.personal_chats[userId])
-    return userData.personal_chats[userId]
+    const  querySnapshot = await firestore.collection("users").where("uid", "==", myId).where("personal_chats", "==", userId).get()
+    const userData = []
+    querySnapshot.forEach((doc) => {
+      userData.push(doc.data().uid)
+    })
+    if (userData.length === 0)
+      return null
+    return userData[0]
   }
 
   async updatePersonalChats(userId1, userId2, chatId) {
     let personalChats = {}
     personalChats[`personal_chats.${userId1}`] = chatId
-    await firestore.collection(`users`).doc(userId2).update(personalChats)
+    const  querySnapshot = await firestore.collection(`users`).where("uid", "==", userId2).get()
+    querySnapshot.forEach( (doc) => {
+      firestore.collection(`users`).doc(doc.id).update(personalChats)
+    })
   }
 
   async createPersonalChatWithMessage(myId, otherUserId, text, myNickName, otherNickName) {

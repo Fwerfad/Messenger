@@ -14,6 +14,7 @@ import {ContactsList} from "./Components/сontactList/contacts";
 import Layout from "./Components/layout/layoutContainer";
 import Profile from "./Components/profile/profile";
 import SearchForm from "./Components/search/contactSearch/search";
+import {authService} from "./services/AuthService";
 
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
 
   render() {
     const auth = firebase.auth()
+    let flag = false;
     if (!auth.currentUser) {
       this.state.isLoggedOn = true;
       return (
@@ -43,9 +45,13 @@ class App extends React.Component {
         </div>
       )
     }
+    console.log(auth.currentUser.providerData[0])
+    authService.login(auth.currentUser.providerData[0]).then((e) => {
+      if (e == null) {
+        authService.register(auth.currentUser.providerData[0])
+      }
+    })
 
-    this.state.currentUser = auth.currentUser.providerData[0];
-    console.log(this.state.currentUser)
     return (
       <Router>
         <Layout>

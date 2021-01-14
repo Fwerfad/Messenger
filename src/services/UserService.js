@@ -43,7 +43,7 @@ class UserService {
         .get()
     let uid = []
     querySnapshot.forEach((doc) => {
-      uid.push(doc.id)
+      uid.push(doc.data().uid)
     })
     return uid[0]
   }
